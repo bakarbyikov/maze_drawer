@@ -1,5 +1,7 @@
+from enum import Enum
 
-symbols = [' ', '╶', '╵', '└', '╷', '─', '┘', '┴', '╴', '┌', '│', '├', '┐', '┬', '┤', '┼']
+symbols = ['   ', ' ╶─', ' ╵ ', ' └─', '─╴ ', '───', '─┘ ', '─┴─', 
+           ' ╷ ', ' ┌─', ' │ ', ' ├─', '─┐ ', '─┬─', '─┤ ', '─┼─']
 
 class Ways(Enum):
     EAST  = 0b0001
@@ -21,3 +23,16 @@ class bin_ways:
 
     def remove(self, way: int) -> None:
         self.value &= self.bin_inverse(way)
+
+    def __invert__(self) -> 'bin_ways':
+        return self.bin_inverse(self.value)
+    
+    def __str__(self) -> str:
+        return bin(self.value)
+
+def test_symbols():
+    for i in range(16):
+        print(f"{i:4b}:\t{symbols[i]}")
+
+if __name__ == '__main__':
+    test_symbols()
