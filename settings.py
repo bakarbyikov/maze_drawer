@@ -1,0 +1,1 @@
+opened_chance = 0.6
